@@ -27,8 +27,8 @@ export class PaisesService {
     if( !codigo ) {
       return of(null)
     }
-    
-    const url = `${ this.baseUrl }alpha/${ codigo }`;
+
+    const url = `${ this.baseUrl }/alpha/${ codigo }`;
     return this.http.get<Pais>( url );
   }
 

@@ -14,7 +14,8 @@ export class SelectorPageComponent implements OnInit {
 
   miFormulario: FormGroup= this.fb.group({
     region: ['', Validators.required ],
-    pais: ['', Validators.required ]
+    pais: ['', Validators.required ],
+    frontera: ['', Validators.required ]
   })
 
   // llenar selectores
@@ -25,8 +26,9 @@ export class SelectorPageComponent implements OnInit {
                private paisesService: PaisesService) { }
 
   ngOnInit(): void {
-    this.regiones = this.paisesService.regiones;    
+    this.regiones = this.paisesService.regiones;
 
+    // Cuando cambia la region
     this.miFormulario.get('region')?.valueChanges
       .pipe(
         tap( ( _ ) => {
@@ -37,7 +39,15 @@ export class SelectorPageComponent implements OnInit {
       .subscribe( paises => {
         this.paises = paises;
       })
+
+      // Cuando cambie el pais
+      this.miFormulario.get('pais')?.valueChanges
+        .subscribe( codigo => {
+          console.log( codigo)
+        })
+
       
+
   }
 
   guardar() {
